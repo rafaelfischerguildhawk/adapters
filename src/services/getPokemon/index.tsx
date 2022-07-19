@@ -1,16 +1,11 @@
-import { pokemonDataAdapter } from "../../adapters/IPokemonDataAdapter";
 import { api } from "../../config/axios";
-import { IGetPokemon, IPokemonState } from "../../entities/IPokemonState";
+import { IHttpClient, IPokemonPayload, IPokemonResponse } from "../../entities";
 
-export const getPokemonService: IGetPokemon = async (name) => {
-  try {
-    const { data } = await api.get<IPokemonState>(`/pokemon/${name}`);
-
-    return {
-      data: pokemonDataAdapter(data),
-      error: null,
-    };
-  } catch (e: any) {
-    return { data: null, error: e.message };
-  }
+// SERVICE SHOULD LOOK LIKE THIS
+export const getPokemonService: IHttpClient<
+  IPokemonPayload,
+  IPokemonResponse
+> = async (payload) => {
+  const { data } = await api.get<IPokemonResponse>(`/pokemon/${payload.name}`);
+  return data;
 };
