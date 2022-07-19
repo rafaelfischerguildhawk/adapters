@@ -47,3 +47,7 @@ export interface IPokemonState {
 export interface IHttpClient<Payload, Response> {
   (payload: Payload): Promise<Response>;
 }
+
+export interface IAdapter<Payload, Response> {
+  (payload: Payload): Response;
+}

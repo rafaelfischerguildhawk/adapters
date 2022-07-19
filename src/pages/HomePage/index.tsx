@@ -4,10 +4,10 @@ import { getPokemon } from "../../adapters/IPokemonDataAdapter";
 import { IPokemonState } from "../../entities";
 
 export const HomePage = () => {
-  const { data } = useQuery(["pokemons"], () =>
+  const { data, error } = useQuery(["pokemons"], () =>
     getPokemon({ name: "charizard" })
   );
-  console.log("query result", data);
+  console.log("query result", data, error);
 
   const [pokemon, setPokemon] = useState<IPokemonState>();
   console.log("raw result", data);

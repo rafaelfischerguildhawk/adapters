@@ -1,4 +1,5 @@
 import {
+  IAdapter,
   IHttpClient,
   IPokemonPayload,
   IPokemonResponse,
@@ -14,9 +15,9 @@ export const getPokemon: IHttpClient<IPokemonPayload, IPokemonState> = async (
   return pokemonAdapter(data);
 };
 
-export const pokemonAdapter = (
-  pokemonResponse: IPokemonResponse
-): IPokemonState => {
+export const pokemonAdapter: IAdapter<IPokemonResponse, IPokemonState> = (
+  pokemonResponse
+) => {
   return {
     height: pokemonResponse.height,
     id: pokemonResponse.id,
